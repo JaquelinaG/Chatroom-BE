@@ -1,21 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Chatroom.Data;
 using Chatroom.Domain;
 
 namespace Chatroom.Service
 {
     public class MessagesServ : IMessagesServ
     {
-        public Task<IEnumerable<Message>> GetMessages()
+        private readonly int maxMessages = 50;
+
+        public MessagesServ()
         {
-            var list = new List<Message>() { new Message() { ID = 1, Name = "Jaqui", Text = "hola", Timestamp = new DateTime() } };
-            return Task.FromResult(list as IEnumerable<Message>);
         }
 
-        public Task SaveMessage(Message message)
+        public async Task<IEnumerable<Message>> GetMessages()
         {
-            throw new NotImplementedException();
+            using (var ctx = new ChatroomContext())
+            {
+                var query = ctx.Messages.OrderByDescending(x => x.Timestamp).Take(this.maxMessages);
+
+                return query.ToArray();
+            }
+        }
+
+        public async Task SaveMessage(Message message)
+        {
+            using (var ctx = new ChatroomContext())
+            {
+                ctx.Messages.Add(message);
+
+                await ctx.SaveChangesAsync();
+            }
         }
     }
 }

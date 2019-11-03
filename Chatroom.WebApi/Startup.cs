@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Chatroom.Service;
+using Chatroom.Data;
 
 namespace Chatroom.WebApi
 {
@@ -55,6 +56,11 @@ namespace Chatroom.WebApi
             app.UseHttpsRedirection();
 
             app.UseMvc();
+
+            using (var context = new ChatroomContext())
+            {
+                context.Database.EnsureCreated();
+            }
         }
     }
 }

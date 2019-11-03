@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Chatroom.Domain;
 using Chatroom.Service;
-using System.Threading.Tasks;
 
 namespace Chatroom.WebApi.Controllers
 {
@@ -21,11 +20,11 @@ namespace Chatroom.WebApi.Controllers
         }
 
         [HttpGet("")]
-        public async Task<IEnumerable<Message>> GetMessages()
+        public async Task<IActionResult> GetMessages()
         {
             var messages = await this.messageService.GetMessages();
 
-            return messages;
+            return Ok(messages);
         }
 
         [HttpPost("")]
