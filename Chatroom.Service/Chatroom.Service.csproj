@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Chatroom.Data\Chatroom.Data.csproj" />
     <ProjectReference Include="..\Chatroom.Domain\Chatroom.Domain.csproj" />
   </ItemGroup>
