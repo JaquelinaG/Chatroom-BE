@@ -33,11 +33,12 @@ namespace Chatroom.WebApi
 
             services.AddSignalR();
 
+            services.Scan(s => s.FromCallingAssembly().AddClasses().AsMatchingInterface());
             services.Scan(s => s.FromAssembliesOf(typeof(IMessagesServ)).AddClasses().AsMatchingInterface());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IRabbitMQClient rabbitMQ)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +62,9 @@ namespace Chatroom.WebApi
             {
                 context.Database.EnsureCreated();
             }
+
+            rabbitMQ.Configure();
+
         }
     }
 }
