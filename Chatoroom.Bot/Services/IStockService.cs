@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Chatoroom.Bot
+namespace Chatroom.Bot
 {
     public interface IStockService
     {

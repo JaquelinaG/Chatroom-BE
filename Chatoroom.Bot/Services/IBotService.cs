@@ -1,4 +1,6 @@
-﻿namespace Chatoroom.Bot
+﻿using System.Threading.Tasks;
+
+namespace Chatroom.Bot
 {
     public interface IBotService
     {
@@ -6,6 +8,6 @@
 
         string GetCommandPattern();
 
-        string ProcessCommand(string text);
+        Task<string> ProcessCommand(string text);
     }
 }

@@ -2,7 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Chatoroom.Bot
+namespace Chatroom.Bot
 {
     public static class ObjectSerialize
     {

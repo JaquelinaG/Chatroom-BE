@@ -6,7 +6,7 @@ using Chatroom.Domain;
 using System;
 using Chatroom.Service;
 
-namespace Chatoroom.Bot.RabbitMQ
+namespace Chatroom.Bot.RabbitMQ
 {
     public class RabbitMQClient : IRabbitMQClient
     {
@@ -35,7 +35,7 @@ namespace Chatoroom.Bot.RabbitMQ
 
                     if (this.botService.IsValidCommand(message.Text))
                     {
-                        result = this.botService.ProcessCommand(message.Text);
+                        result = this.botService.ProcessCommand(message.Text).Result;
 
                         this.SendMessage(result);
                     }

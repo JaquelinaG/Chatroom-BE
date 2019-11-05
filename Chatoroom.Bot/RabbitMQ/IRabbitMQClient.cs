@@ -1,4 +1,4 @@
-﻿namespace Chatoroom.Bot
+﻿namespace Chatroom.Bot
 {
     public interface IRabbitMQClient
     {

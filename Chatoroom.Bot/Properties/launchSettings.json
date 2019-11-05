@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Chatoroom.Bot": {
+    "Chatroom.Bot": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

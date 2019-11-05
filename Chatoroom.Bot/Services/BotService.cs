@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Chatoroom.Bot;
+using System.Threading.Tasks;
 
 namespace Chatroom.Bot
 {
@@ -26,7 +26,7 @@ namespace Chatroom.Bot
 
         private bool IsValidEntryCommand(string text)
         {
-            var command = text.Split(new char[] { '=' }, 2);
+            var command = text.Split(new char[] { '=' }, 2 );
 
             var entryCommand = command.First();
 
@@ -39,22 +39,27 @@ namespace Chatroom.Bot
 
             var stock_code = command.Last();
 
+            if (stock_code == command.First())
+            {
+                return null;
+            }
+
             return stock_code;
         }
 
-        public string ProcessCommand(string text)
+        public async Task<string> ProcessCommand(string text)
         {
-            var stock = this.stockService.GetStock(this.GetValidStockcode(text));
+            var stock = await this.stockService.GetStock(this.GetValidStockcode(text));
 
             if (stock == null)
                 return "Invalid stock!";
 
-            return $"{stock.Result.Ticker} quote is ${stock.Result.Price} per share";
+            return $"{stock.Ticker} quote is ${stock.Price} per share";
         }
 
         public string GetCommandPattern()
         {
-            return $"{validEntryCommand}+stock_code";
+            return $"{validEntryCommand}=stock_code";
         }
     }
 }

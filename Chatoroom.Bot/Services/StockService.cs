@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Chatoroom.Bot
+namespace Chatroom.Bot
 {
     public class StockService : IStockService
     {

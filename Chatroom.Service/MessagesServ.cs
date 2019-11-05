@@ -36,9 +36,16 @@ namespace Chatroom.Service
 
             using (var ctx = new ChatroomContext())
             {
-                ctx.Messages.Add(message);
+                try
+                {
+                    ctx.Messages.Add(message);
 
-                await ctx.SaveChangesAsync();
+                    await ctx.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    //Todo: log exception
+                }               
             }
         }
     }

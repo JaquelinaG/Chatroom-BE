@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Chatoroom.Bot
+namespace Chatroom.Bot
 {
     public class StockReader : IStockReader
     {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using Chatroom.Domain;
 using Chatroom.Service;
 
-namespace Chatroom.WebApi.Controllers
+namespace Chatroom.WebApi
 {
     [Route("api/messages")]
     [ApiController]
