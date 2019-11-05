@@ -8,7 +8,7 @@ namespace Chatroom.Domain
 
         public string Text { get; set; }
 
-        public DateTime Timestamp { get; set; }
+        public DateTime? Timestamp { get; set; }
 
         public string Name { get; set; }
     }

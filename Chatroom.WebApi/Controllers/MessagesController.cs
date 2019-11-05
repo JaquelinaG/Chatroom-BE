@@ -32,13 +32,13 @@ namespace Chatroom.WebApi.Controllers
         {
             if (message != null)
             {
-                if (!message.Text.StartsWith('/'))
+                if (!this.messageService.IsMessageForBot(message.Text))
                 {
                     await this.messageService.SaveMessage(message);
                 }
 
                 await this.hub.Clients.All.SendAsync("shareMessage", message);
-            }            
+            }
         }
     }
 }

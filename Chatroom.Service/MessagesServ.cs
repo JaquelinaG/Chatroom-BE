@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Chatroom.Data;
@@ -24,8 +25,15 @@ namespace Chatroom.Service
             }
         }
 
+        public bool IsMessageForBot(string text)
+        {
+            return text.StartsWith("/stock=");
+        }
+
         public async Task SaveMessage(Message message)
         {
+            message.Timestamp = DateTime.Now;
+
             using (var ctx = new ChatroomContext())
             {
                 ctx.Messages.Add(message);

@@ -6,8 +6,10 @@ namespace Chatroom.Service
 {
     public interface IMessagesServ
     {
-        Task SaveMessage(Message message);
-
         Task<IEnumerable<Message>> GetMessages();
+
+        bool IsMessageForBot(string text);
+
+        Task SaveMessage(Message message);
     }
 }
